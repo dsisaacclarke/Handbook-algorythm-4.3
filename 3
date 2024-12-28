@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits>
+
+int main() {
+    int n;
+    std::cin >> n;
+
+    std::vector<int> numbers(n);
+    for (int i = 0; i < n; ++i) {
+        std::cin >> numbers[i];
+    }
+
+    std::sort(numbers.begin(), numbers.end());
+
+    long long max_product;
+
+    if (n == 3){
+         max_product = static_cast<long long>(numbers[0]) * numbers[1] * numbers[2];
+    } else {
+        long long product1 = static_cast<long long>(numbers[n - 1]) * numbers[n - 2] * numbers[n - 3];
+        long long product2 = static_cast<long long>(numbers[0]) * numbers[1] * numbers[n - 1];
+
+        max_product = std::max(product1, product2);
+    }
+
+    std::cout << max_product << "\n";
+}
